@@ -8,12 +8,19 @@ import Boards from './index'
 @inject('boardsStore')
 @observer
 class BoardsContainer extends Component {
-  handleOnClick = () => {
+  handleAddOneTimer = () => {
     this.props.boardsStore.addOneTimer()
+  }
+  handleStartTimer = () => {
+    this.props.boardsStore.startTimer()
   }
   render() {
     return (
-      <Boards timer={this.props.boardsStore.timer} handleOnClick={this.handleOnClick} />
+      <Boards
+        timer={this.props.boardsStore.timer}
+        handleAddOneTimer={this.handleAddOneTimer}
+        handleStartTimer={this.handleStartTimer}
+      />
     )
   }
 }
