@@ -11,11 +11,6 @@ class BoardsStore {
   @action addOneTimer = () => {
     this.timer += 1
   }
-  @action startTimer = () => {
-    setInterval(() => {
-      this.timer += 1
-    }, 1000)
-  }
 
   @action merge = (data) => {
     this.entries = data

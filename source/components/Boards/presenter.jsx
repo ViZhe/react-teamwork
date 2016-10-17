@@ -12,7 +12,9 @@ class BoardsContainer extends Component {
     this.props.boardsStore.addOneTimer()
   }
   handleStartTimer = () => {
-    this.props.boardsStore.startTimer()
+    setInterval(() => {
+      this.props.boardsStore.addOneTimer()
+    }, 1000)
   }
   render() {
     return (
