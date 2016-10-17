@@ -1,0 +1,28 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "plugins": ["babel"],
+  "rules": {
+    "comma-dangle": [2, "never"],
+    "object-curly-spacing": 0,
+    "jsx-quotes": [1, "prefer-single"],
+    "semi": [2, "never"],
+
+    'babel/object-curly-spacing': [2, 'never'],
+    "jsx-a11y/label-has-for": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": [2, {ignore: ['^~']}],
+
+    "no-console": 0,
+    "react/prop-types": 0
+
+
+    # "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 1}],
+    # "no-unused-vars": [2, {"args": "none"}],
+    # "operator-linebreak": [2, "after", {"overrides": {"?": "before", ":": "before"}}],
+  }
+}
