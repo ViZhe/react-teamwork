@@ -1,5 +1,2 @@
 
-export {
-  fetchBoards,
-  upTimer
-} from './boards'
+export * from './boards'
