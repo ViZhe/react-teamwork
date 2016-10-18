@@ -4,6 +4,9 @@ const webpack = require('webpack')
 
 
 module.exports = {
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   entry: {
     main: [
       'babel-polyfill',
