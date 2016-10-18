@@ -15,7 +15,6 @@
     'babel/object-curly-spacing': [2, 'never'],
     "jsx-a11y/label-has-for": 0,
     "import/no-extraneous-dependencies": 0,
-    "import/no-unresolved": [2, {ignore: ['^~']}],
 
     "no-console": 0,
     "react/prop-types": 0

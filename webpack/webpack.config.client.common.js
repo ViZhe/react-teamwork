@@ -4,12 +4,6 @@ const webpack = require('webpack')
 
 
 module.exports = {
-  resolve: {
-    alias: {
-      '~': path.resolve(process.cwd(), 'source')
-    },
-    extensions: ['', '.js', '.jsx']
-  },
   entry: {
     main: [
       'babel-polyfill',
