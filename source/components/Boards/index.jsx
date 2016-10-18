@@ -2,6 +2,8 @@
 import React from 'react'
 import {Link} from 'react-router'
 
+import {BoardsAdd} from '../'
+
 
 const BoardsItem = ({id, name}) => (
   <div>
@@ -19,7 +21,9 @@ const Boards = ({timer, entities, handleAddOneTimer, handleStartTimer}) => {
       <h2>Boards</h2>
 
       {wrapEntries}
+      <BoardsAdd />
 
+      <h3>timer</h3>
       <div>Seconds passed: {timer}</div>
       <button onClick={handleAddOneTimer}>
         +5
