@@ -14,7 +14,7 @@ class BoardsStore {
   }
 
   @action merge = (data) => {
-    this.entities = data
+    this.entities = Object.assign({}, this.entities, data)
     this.isLoading = false
   }
 
