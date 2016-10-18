@@ -13,6 +13,16 @@ export const fetchBoards = () => (
       boardsStore.merge(normalizedData.entities.boards)
     })
 )
+export const addBoard = (data) => {
+  const id = `id${Math.random()}`
+
+  boardsStore.merge({
+    [id]: {
+      id,
+      ...data
+    }
+  })
+}
 
 export const upTimer = (num = 1) => (
   boardsStore.upTimer(num)
