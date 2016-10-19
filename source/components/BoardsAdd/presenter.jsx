@@ -19,13 +19,9 @@ class BoardsAddContainer extends Component {
     super(props)
     this.handleSubmit = ::this.handleSubmit
   }
-  componentDidMount() {
-    actions.fetchBoards()
-  }
   handleSubmit = (e) => {
     e.preventDefault()
     actions.addBoard(form.values())
-    console.log(form.values())
   }
   render() {
     return (
@@ -36,5 +32,6 @@ class BoardsAddContainer extends Component {
     )
   }
 }
+
 
 export default BoardsAddContainer
