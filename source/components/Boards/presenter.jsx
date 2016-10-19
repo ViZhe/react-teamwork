@@ -6,30 +6,22 @@ import * as actions from '../../actions'
 import Boards from './index'
 
 
-@inject('boardsStore')
+@inject('entityStore')
 @observer
 class BoardsContainer extends Component {
   componentDidMount() {
-    actions.fetchBoards()
-  }
-  handleAddOneTimer = () => {
-    actions.upTimer(5)
-  }
-  handleStartTimer = () => {
-    setInterval(() => {
-      actions.upTimer()
-    }, 1000)
+    actions.fetchEntity('boards')
   }
   render() {
+    const {entityStore} = this.props
+
     return (
       <Boards
-        timer={this.props.boardsStore.timer}
-        entities={this.props.boardsStore.entities}
-        handleAddOneTimer={this.handleAddOneTimer}
-        handleStartTimer={this.handleStartTimer}
+        boards={entityStore.getEntitiesByKey('boards')}
       />
     )
   }
 }
+
 
 export default BoardsContainer

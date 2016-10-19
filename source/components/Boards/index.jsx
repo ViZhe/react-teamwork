@@ -5,32 +5,28 @@ import {Link} from 'react-router'
 import {BoardsAdd} from '../'
 
 
-const BoardsItem = ({id, name}) => (
+const BoardsItem = ({id, name, position}) => (
   <div>
-    {id}) {name} <Link to={`/b/${id}`} >link</Link>
+    {position}) {id} - {name} <Link to={`/b/${id}`} >link</Link>
   </div>
 )
 
-const Boards = ({timer, entities, handleAddOneTimer, handleStartTimer}) => {
-  const wrapEntries = Object.keys(entities).map((id, index) => (
-    <BoardsItem key={index} {...entities[id]} />
+const Boards = ({boards}) => {
+  const boardsIds = Object.keys(boards)
+  const wrapEntries = boardsIds
+    .sort((a, b) =>
+      boards[a].position - boards[b].position
+    )
+    .map((id, index) => (
+      <BoardsItem key={index} {...boards[id]} />
   ))
 
   return (
     <div>
-      <h2>Boards</h2>
+      <h2>Boards ({boardsIds.length})</h2>
 
       {wrapEntries}
       <BoardsAdd />
-
-      <h3>timer</h3>
-      <div>Seconds passed: {timer}</div>
-      <button onClick={handleAddOneTimer}>
-        +5
-      </button>
-      <button onClick={handleStartTimer}>
-        Start
-      </button>
     </div>
   )
 }
