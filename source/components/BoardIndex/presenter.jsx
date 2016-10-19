@@ -6,20 +6,24 @@ import * as actions from '../../actions'
 import BoardIndex from './index'
 
 
-@inject('boardsStore')
+@inject('entityStore')
 @observer
 class BoardIndexContainer extends Component {
   componentDidMount() {
-    actions.fetchBoards()
-    this.props.boardsStore.setActive(this.props.params.id)
+    actions.fetchEntity('boards')
+    actions.fetchEntity('columns')
   }
   render() {
+    const {entityStore, params: {id}} = this.props
+
     return (
       <BoardIndex
-        {...this.props.boardsStore.entities[this.props.params.id]}
+        board={entityStore.getEntitiesByKey('boards')[id]}
+        columns={entityStore.getEntitiesByKey('columns')}
       />
     )
   }
 }
+
 
 export default BoardIndexContainer
