@@ -2,7 +2,7 @@
 import {arrayOf, normalize} from 'normalizr'
 
 import boardSchema from '../../schemas/board'
-import boardsStore from '../../stores/boardsStore/index'
+import entityStore from '../../stores/entityStore/index'
 
 
 export const fetchBoards = () => (
@@ -10,20 +10,15 @@ export const fetchBoards = () => (
     .then(response => response.json())
     .then((data) => {
       const normalizedData = normalize(data, arrayOf(boardSchema))
-      boardsStore.merge(normalizedData.entities.boards)
+      entityStore.mergeEntities('boards', normalizedData.entities.boards)
     })
 )
+
 export const addBoard = (data) => {
   const id = `id${Math.random()}`
+  const board = data
+  board.id = id
+  console.log(board)
 
-  boardsStore.merge({
-    [id]: {
-      id,
-      ...data
-    }
-  })
+  entityStore.syncEntities('boards', board)
 }
-
-export const upTimer = (num = 1) => (
-  boardsStore.upTimer(num)
-)
