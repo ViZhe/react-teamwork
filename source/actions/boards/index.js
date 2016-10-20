@@ -22,3 +22,7 @@ export const addBoard = (data) => {
 
   entityStore.syncEntities('boards', board)
 }
+
+export const testBoards = () => {
+  console.log('testBoards', Math.random())
+}
