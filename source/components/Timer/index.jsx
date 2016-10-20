@@ -8,11 +8,14 @@ import * as actions from '../../actions'
 @inject('timerStore')
 @observer
 class BoardsContainer extends Component {
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
   handleAddOneTimer = () => {
     actions.upTimer(5)
   }
   handleStartTimer = () => {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       actions.upTimer()
     }, 1000)
   }
