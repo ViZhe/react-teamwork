@@ -2,14 +2,37 @@
 import React from 'react'
 
 
-const BoardIndex = ({board, columns}) => {
+const Column = ({id, name, cards}) => {
+  const cardsIds = Object.keys(cards)
+  const wrapCards = cardsIds.map((key, index) => {
+    const card = cards[key]
+    if (id !== card.column_id) {
+      return null
+    }
+    return (
+      <div key={index} >
+        {card.name}
+      </div>
+    )
+  })
+
+  return (
+    <div>
+      <h3>{id} - {name}</h3>
+      {wrapCards}
+    </div>
+  )
+}
+
+const BoardIndex = ({board, columns, cards}) => {
   const columnsIds = Object.keys(columns)
   const wrapColumns = columnsIds.map((key, index) => {
     const column = columns[key]
+    if (board.id !== column.board_id) {
+      return null
+    }
     return (
-      <div key={index} >
-        <h3>{column.id} - {column.name}</h3>
-      </div>
+      <Column key={index} cards={cards} {...column} />
     )
   })
 
