@@ -1,6 +1,8 @@
 
 import React from 'react'
 
+import ColumnList from '../ColumnList'
+
 
 const Column = ({id, name, cards}) => {
   const cardsIds = Object.keys(cards)
@@ -24,7 +26,7 @@ const Column = ({id, name, cards}) => {
   )
 }
 
-const BoardIndex = ({board, columns, cards}) => {
+const BoardIndex = ({board = {}, columns, cards}) => {
   const columnsIds = Object.keys(columns)
   const wrapColumns = columnsIds.map((key, index) => {
     const column = columns[key]
@@ -40,6 +42,7 @@ const BoardIndex = ({board, columns, cards}) => {
     <div>
       <h2>{board && board.id} - {board && board.name}</h2>
       {wrapColumns}
+      <ColumnList boardId={board && board.id} />
     </div>
   )
 }
