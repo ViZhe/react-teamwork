@@ -2,13 +2,12 @@
 import React from 'react'
 import {Link} from 'react-router'
 
-import {Timer} from '../'
-
 
 const App = ({children}) => (
   <div>
-    <h1>App <Link to='/' >home</Link></h1>
-    <Timer />
+    <h1>App</h1>
+    <div><Link to='/' >home</Link></div>
+    <div><Link to='/timer' >Lazy load Timer component</Link></div>
     {children}
   </div>
 )
