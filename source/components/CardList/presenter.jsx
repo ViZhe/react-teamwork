@@ -3,6 +3,7 @@ import React from 'react'
 
 import Card from '../Card'
 
+
 const CardList = ({cards}) => {
   const cardsIds = Object.keys(cards)
   const cardWrap = cardsIds.map((key, index) => (

@@ -3,6 +3,7 @@ import React from 'react'
 
 import Column from '../Column'
 
+
 const ColumnList = ({columns}) => {
   const columnsIds = Object.keys(columns)
   const columnWrap = columnsIds.map((key, index) => (
