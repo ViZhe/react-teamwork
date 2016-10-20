@@ -11,8 +11,6 @@ import BoardIndex from './index'
 class BoardIndexContainer extends Component {
   componentDidMount() {
     actions.fetchEntity('boards')
-    actions.fetchEntity('columns')
-    actions.fetchEntity('cards')
   }
   render() {
     const {entityStore, params: {id}} = this.props
@@ -20,8 +18,6 @@ class BoardIndexContainer extends Component {
     return (
       <BoardIndex
         board={entityStore.getEntitiesByKey('boards')[id]}
-        columns={entityStore.getEntitiesByKey('columns')}
-        cards={entityStore.getEntitiesByKey('cards')}
       />
     )
   }
