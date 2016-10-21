@@ -13,6 +13,14 @@ export const fetchEntity = (name) => {
     })
 }
 
+export const addEntity = (name, data) => {
+  const id = `id${Math.random()}`
+  const entity = data
+  entity.id = id
+
+  entityStore.syncEntities(name, entity)
+}
+
 export const testEntity = () => {
   console.log('testEntity', Math.random())
 }
