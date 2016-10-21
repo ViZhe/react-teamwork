@@ -4,9 +4,9 @@ import {Route, IndexRoute} from 'react-router'
 
 import {
   App,
-  Boards,
   BoardIndex
 } from './components'
+import BoardList from './components/BoardList'
 
 
 function requireAsync(name) {
@@ -21,13 +21,13 @@ function requireAsync(name) {
 const routes = (
   <div>
     <Route path='/' component={App}>
-      <IndexRoute component={Boards} />
+      <IndexRoute component={BoardList} />
       <Route path='b' >
-        <IndexRoute component={Boards} />
+        <IndexRoute component={BoardList} />
         <Route path=':id' component={BoardIndex} />
       </Route>
       <Route path='/timer' getComponent={requireAsync('Timer')} />
-      <Route path='*' component={Boards} />
+      <Route path='*' component={BoardList} />
     </Route>
   </div>
 )
