@@ -30,6 +30,7 @@ class ColumnListContainer extends Component {
     return (
       <ColumnList
         columns={columns}
+        boardId={boardId}
       />
     )
   }

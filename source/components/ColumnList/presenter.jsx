@@ -2,19 +2,21 @@
 import React from 'react'
 
 import Column from '../Column'
+import ColumnAdd from '../ColumnAdd'
 
 
-const ColumnList = ({columns}) => {
+const ColumnList = ({columns, boardId}) => {
   const columnsIds = Object.keys(columns)
   const columnWrap = columnsIds.map((key, index) => (
     <Column key={index} column={columns[key]} />
   ))
 
   return (
-    <div>
-      <h2>Column List</h2>
+    <fieldset>
+      <legend>Column List</legend>
       {columnWrap}
-    </div>
+      <ColumnAdd boardId={boardId} />
+    </fieldset>
   )
 }
 
