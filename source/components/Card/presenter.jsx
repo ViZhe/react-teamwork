@@ -4,7 +4,7 @@ import React from 'react'
 
 const Card = ({id, name}) => (
   <div>
-    <div>{id} - {name}</div>
+    <b>{id}</b> - {name}
   </div>
 )
 

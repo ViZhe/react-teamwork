@@ -6,7 +6,7 @@ import CardList from '../CardList'
 
 const Column = ({id, name}) => (
   <div>
-    <h2>{id} - {name}</h2>
+    <div><b>{id}</b> - {name}</div>
     <CardList columnId={id} />
   </div>
 )
