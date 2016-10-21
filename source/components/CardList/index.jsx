@@ -30,6 +30,7 @@ class CardListContainer extends Component {
     return (
       <CardList
         cards={cards}
+        columnId={columnId}
       />
     )
   }
