@@ -12,7 +12,7 @@ const CardList = ({cards, columnId}) => {
   ))
 
   return (
-    <fieldset style={{margin: '10px 0 20px'}}>
+    <fieldset style={{margin: '10px 0 20px'}} >
       <legend>Card List</legend>
       {cardWrap}
       <CardAdd columnId={columnId} />
