@@ -4,6 +4,7 @@ import MobxReactForm from 'mobx-react-form'
 
 import * as actions from '../../actions'
 import ColumnAdd from './presenter'
+import HiddenWrap from '../HiddenWrap'
 
 
 const form = new MobxReactForm({
@@ -27,10 +28,12 @@ class ColumnAddContainer extends Component {
   }
   render() {
     return (
-      <ColumnAdd
-        form={form}
-        handleSubmit={this.handleSubmit}
-      />
+      <HiddenWrap>
+        <ColumnAdd
+          form={form}
+          handleSubmit={this.handleSubmit}
+        />
+      </HiddenWrap>
     )
   }
 }
