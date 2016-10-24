@@ -4,6 +4,7 @@ import MobxReactForm from 'mobx-react-form'
 
 import * as actions from '../../actions'
 import CardAdd from './presenter'
+import HiddenWrap from '../HiddenWrap'
 
 
 const form = new MobxReactForm({
@@ -27,10 +28,12 @@ class CardAddContainer extends Component {
   }
   render() {
     return (
-      <CardAdd
-        form={form}
-        handleSubmit={this.handleSubmit}
-      />
+      <HiddenWrap>
+        <CardAdd
+          form={form}
+          handleSubmit={this.handleSubmit}
+        />
+      </HiddenWrap>
     )
   }
 }
