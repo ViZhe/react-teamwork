@@ -21,6 +21,10 @@ export const addEntity = (name, data) => {
   entityStore.syncEntities(name, entity)
 }
 
+export const updateEntity = (name, data) => {
+  entityStore.updateEntities(name, data)
+}
+
 export const testEntity = () => {
   console.log('testEntity', Math.random())
 }
