@@ -20,6 +20,15 @@ class EntityStore {
     })
   }
 
+  @action updateEntities = (key, entity) => {
+    const data = {
+      ...this.entities.get(key).get(entity.id),
+      ...entity
+    }
+
+    this.entities.get(key).set(entity.id, data)
+  }
+
   getEntitiesByKey(key) {
     const entities = this.entities.get(key)
     return entities ? entities.toJS() : {}
