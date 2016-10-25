@@ -8,16 +8,24 @@ import * as actions from '../../actions'
 @inject('timerStore')
 @observer
 class BoardsContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      counters: []
+    }
+  }
   componentWillUnmount() {
-    clearInterval(this.interval)
+    for (const counter of this.state.counters) {
+      clearInterval(counter)
+    }
   }
   handleAddOneTimer = () => {
     actions.upTimer(5)
   }
   handleStartTimer = () => {
-    this.interval = setInterval(() => {
+    this.state.counters.push(setInterval(() => {
       actions.upTimer()
-    }, 1000)
+    }, 1000))
   }
   render() {
     const {timerStore} = this.props
