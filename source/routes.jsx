@@ -7,6 +7,7 @@ import {
   BoardIndex
 } from './components'
 import BoardList from './components/BoardList'
+import NotFound from './components/NotFound'
 
 
 function requireAsync(name) {
@@ -20,15 +21,15 @@ function requireAsync(name) {
 
 const routes = (
   <div>
-    <Route path='/' component={App}>
+    <Route path='/' component={App} >
       <IndexRoute component={BoardList} />
       <Route path='b' >
         <IndexRoute component={BoardList} />
         <Route path=':id' component={BoardIndex} />
       </Route>
-      <Route path='/timer' getComponent={requireAsync('Timer')} />
-      <Route path='*' component={BoardList} />
     </Route>
+    <Route path='/timer' getComponent={requireAsync('Timer')} />
+    <Route path='*' component={NotFound} />
   </div>
 )
 
