@@ -1,13 +1,24 @@
 
 import Express from 'express'
+import cookieParser from 'cookie-parser'
+import bodyParser from 'body-parser'
+import session from 'express-session'
+import mongoose from 'mongoose'
 
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
-import config from '../webpack/webpack.config.client.development'
+import webpackConfig from '../webpack/webpack.config.client.development'
 
+import config from './config.gitsecret'
 import api from './api'
+import {
+  passport,
+  routes as authRoutes
+} from './auth'
 
+
+mongoose.connect(config.db)
 
 const server = new Express()
 const host = process.env.HOST || '0.0.0.0'
@@ -16,7 +27,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 const assets = isProduction ? require('../assets.json') : ''
 
-const compiler = webpack(config)
+const compiler = webpack(webpackConfig)
 server.use(webpackDevMiddleware(compiler, {
   stats: {
     version: false,
@@ -29,8 +40,20 @@ server.use(webpackDevMiddleware(compiler, {
 }))
 server.use(webpackHotMiddleware(compiler))
 
-
+server.use(cookieParser())
+server.use(bodyParser.json())
+server.use(bodyParser.urlencoded({
+  extended: true
+}))
+server.use(session({
+  secret: config.session.secret,
+  resave: true,
+  saveUninitialized: true
+}))
+server.use(passport.initialize())
+server.use(passport.session())
 server.use('/api/v1/', api)
+server.use('/auth/v1/', authRoutes(passport))
 
 server.get('*', (req, res) => {
   res.status(200).send(`
@@ -40,7 +63,7 @@ server.get('*', (req, res) => {
         <meta charset="utf-8" >
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         >
       </head>
       <body>
