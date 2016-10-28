@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import session from 'express-session'
 import mongoose from 'mongoose'
+import connectMongo from 'connect-mongo'
 
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
@@ -18,6 +19,7 @@ import {
 } from './auth'
 
 
+mongoose.Promise = global.Promise
 mongoose.connect(config.db)
 
 const server = new Express()
@@ -26,6 +28,8 @@ const port = process.env.PORT || '3000'
 const isProduction = process.env.NODE_ENV === 'production'
 
 const assets = isProduction ? require('../assets.json') : ''
+
+const MongoStore = connectMongo(session)
 
 const compiler = webpack(webpackConfig)
 server.use(webpackDevMiddleware(compiler, {
@@ -46,7 +50,9 @@ server.use(bodyParser.urlencoded({
   extended: true
 }))
 server.use(session({
+  key: 'sid',
   secret: config.session.secret,
+  store: new MongoStore({mongooseConnection: mongoose.connection}),
   resave: true,
   saveUninitialized: true
 }))
