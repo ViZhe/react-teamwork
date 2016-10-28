@@ -20,7 +20,9 @@ passport.use('localLogin', new Strategy({
     if (!user.validPassword(password)) {
       return done(null, null, {where: 'passLoginCompare', err, user})
     }
-    return done(null, user)
+    // eslint-disable-next-line no-param-reassign, no-underscore-dangle
+    req.session.user = user._id
+    return done(null, {user, ss: req.session, asd: 'asd'})
   })
 }))
 
