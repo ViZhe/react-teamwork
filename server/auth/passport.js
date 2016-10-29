@@ -5,49 +5,64 @@ import {Strategy} from 'passport-local'
 import User from './model'
 
 
-passport.use('localLogin', new Strategy({
+const strategyOption = {
   usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
-}, (req, email, password, done) => {
-  User.findOne({email}, (err, user) => {
-    if (err) {
-      return done(null, null, {where: 'passLoginErr', err, user})
-    }
-    if (!user) {
-      return done(null, null, {where: 'passLoginUser', err, user})
-    }
-    if (!user.validPassword(password)) {
-      return done(null, null, {where: 'passLoginCompare', err, user})
-    }
-    // eslint-disable-next-line no-param-reassign, no-underscore-dangle
-    req.session.user = user._id
-    return done(null, {user, ss: req.session, asd: 'asd'})
-  })
-}))
+}
 
-passport.use('localSignup', new Strategy({
-  usernameField: 'email',
-  passwordField: 'password',
-  passReqToCallback: true
-}, (req, email, password, done) => {
-  User.findOne({email}, (err, user) => {
-    if (err) {
-      return done(null, null, {where: 'passSingupErr', err, user})
-    }
-    if (user) {
-      return done(null, null, {where: 'passSingupUser', err, user})
-    }
+passport.use('localSignIn', new Strategy(
+  strategyOption,
+  (req, email, password, done) => {
+    User.findOne({email}, (err, user) => {
+      if (err) {
+        return done(err)
+      }
+      if (!user) {
+        return done(null, false, {
+          message: 'Wrong login or password'
+        })
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, {
+          message: 'Wrong login or password'
+        })
+      }
 
-    const newUser = new User()
-    newUser.email = email
-    newUser.password = newUser.encryptPassword(password)
+      const {_id: id} = user
+      // eslint-disable-next-line no-param-reassign
+      req.session.user = id
+      return done(null, {id})
+    })
+  }
+))
 
-    return newUser.save((error, savedUser) => (
-      done(error, savedUser)
-    ))
-  })
-}))
+passport.use('localSignUp', new Strategy(
+  strategyOption,
+  (req, email, password, done) => {
+    User.findOne({email}, (err, user) => {
+      if (err) {
+        return done(err)
+      }
+      if (user) {
+        return done(null, false, {
+          message: 'Email already exists'
+        })
+      }
+
+      const newUser = new User()
+      newUser.email = email
+      newUser.password = newUser.encryptPassword(password)
+
+      return newUser.save((error, {_id: id}) => {
+        if (err) {
+          return done(err)
+        }
+        return done(null, {id})
+      })
+    })
+  }
+))
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
