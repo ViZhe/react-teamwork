@@ -2,31 +2,29 @@
 import {Router} from 'express'
 
 
+const handleAuthenticate = (err, user, info, res) => {
+  if (err) {
+    return res.status(500).json(err)
+  }
+  if (!user) {
+    return res.status(409).json(info)
+  }
+  return res.status(200).json(user)
+}
+
 const routes = (passport) => {
   const router = new Router()
 
-  router.post('/login', (req, res, next) => (
-    passport.authenticate('localLogin', (err, user, info) => {
-      if (err) {
-        return res.status(201).json({where: 'routesLoginErr', err, info})
-      }
-      if (!user) {
-        return res.status(201).json({where: 'routesLoginUser', user, err, info})
-      }
-      return res.status(200).json(user)
-    })(req, res, next)
+  router.post('/signin', (req, res, next) => (
+    passport.authenticate('localSignIn', (err, user, info) => (
+      handleAuthenticate(err, user, info, res)
+    ))(req, res, next)
   ))
 
   router.post('/signup', (req, res, next) => (
-    passport.authenticate('localSignup', (err, user, info) => {
-      if (err) {
-        return res.status(201).json({where: 'routesSingupErr', err, info})
-      }
-      if (!user) {
-        return res.status(201).json({where: 'routesSingupUser', user, info, err})
-      }
-      return res.status(200).json(user)
-    })(req, res, next)
+    passport.authenticate('localSignUp', (err, user, info) => (
+      handleAuthenticate(err, user, info, res)
+    ))(req, res, next)
   ))
 
   return router
