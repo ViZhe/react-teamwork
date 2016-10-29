@@ -44,6 +44,7 @@ server.use(webpackDevMiddleware(compiler, {
 }))
 server.use(webpackHotMiddleware(compiler))
 
+server.disable('x-powered-by')
 server.use(cookieParser())
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({
