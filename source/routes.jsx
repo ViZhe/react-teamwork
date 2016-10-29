@@ -28,7 +28,9 @@ const routes = (
         <Route path=':id' component={BoardIndex} />
       </Route>
     </Route>
-    <Route path='/timer' getComponent={requireAsync('Timer')} />
+    <Route path='/' component={App} >
+      <Route path='/timer' getComponent={requireAsync('Timer')} />
+    </Route>
     <Route path='*' component={NotFound} />
   </div>
 )
