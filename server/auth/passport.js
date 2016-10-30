@@ -30,8 +30,6 @@ passport.use('localSignIn', new Strategy(
       }
 
       const {_id: id} = user
-      // eslint-disable-next-line no-param-reassign
-      req.session.user = id
       return done(null, {id})
     })
   }
@@ -64,8 +62,8 @@ passport.use('localSignUp', new Strategy(
   }
 ))
 
-passport.serializeUser((user, done) => {
-  done(null, user.id)
+passport.serializeUser(({id}, done) => {
+  done(null, id)
 })
 
 passport.deserializeUser((id, done) => {
