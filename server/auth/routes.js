@@ -2,14 +2,19 @@
 import {Router} from 'express'
 
 
-const handleAuthenticate = (err, user, info, res) => {
+const handleAuthenticate = (err, user, info, req, res) => {
   if (err) {
     return res.status(500).json(err)
   }
   if (!user) {
     return res.status(409).json(info)
   }
-  return res.status(200).json(user)
+  return req.logIn(user, (error) => {
+    if (error) {
+      return res.status(500).json(error)
+    }
+    return res.status(200).json(user)
+  })
 }
 
 const routes = (passport) => {
@@ -17,18 +22,17 @@ const routes = (passport) => {
 
   router.post('/signin', (req, res, next) => (
     passport.authenticate('localSignIn', (err, user, info) => (
-      handleAuthenticate(err, user, info, res)
+      handleAuthenticate(err, user, info, req, res)
     ))(req, res, next)
   ))
 
   router.post('/signup', (req, res, next) => (
     passport.authenticate('localSignUp', (err, user, info) => (
-      handleAuthenticate(err, user, info, res)
+      handleAuthenticate(err, user, info, req, res)
     ))(req, res, next)
   ))
 
   return router
 }
-
 
 export default routes
