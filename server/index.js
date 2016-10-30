@@ -45,11 +45,11 @@ server.use(webpackDevMiddleware(compiler, {
 server.use(webpackHotMiddleware(compiler))
 
 server.disable('x-powered-by')
-server.use(cookieParser())
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({
   extended: true
 }))
+server.use(cookieParser())
 server.use(session({
   key: 'sid',
   secret: config.session.secret,
@@ -59,8 +59,8 @@ server.use(session({
 }))
 server.use(passport.initialize())
 server.use(passport.session())
-server.use('/api/v1/', api)
 server.use('/auth/v1/', authRoutes(passport))
+server.use('/api/v1/', api)
 
 server.get('*', (req, res) => {
   res.status(200).send(`
