@@ -6,8 +6,9 @@ export const signUp = (data) => {
 export const signIn = (data) => {
   fetch('/auth/v1/signin', {
     method: 'POST',
+    credentials: 'include',
     headers: {
-      'content-type': 'application/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       email: data.email,
