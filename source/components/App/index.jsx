@@ -2,12 +2,17 @@
 import React from 'react'
 import {Link} from 'react-router'
 
+import SignIn from '../SignIn'
+
 
 const App = ({children}) => (
   <div>
-    <h1>App</h1>
-    <div><Link to='/' >home</Link></div>
-    <div><Link to='/timer' >Lazy load Timer component</Link></div>
+    <header>
+      <h1>App</h1>
+      <div><Link to='/' >home</Link></div>
+      <div><Link to='/timer' >Lazy load Timer component</Link></div>
+      <SignIn />
+    </header>
     {children}
   </div>
 )
