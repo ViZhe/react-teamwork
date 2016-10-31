@@ -7,9 +7,12 @@ export const signIn = (data) => {
   fetch('/auth/v1/signin', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'content-type': 'application/json'
     },
-    body: `email=${data.email}&password=${data.password}`
+    body: JSON.stringify({
+      email: data.email,
+      password: data.password
+    })
   })
     .then(response => response.json())
     .then(result => console.log(result))
