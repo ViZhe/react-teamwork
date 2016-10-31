@@ -26,7 +26,7 @@ const SignIn = ({form, handleSubmit}) => (
       />
       <button>Войти</button>
     </form>
-    <div onClick={() => actions.singUp()} >asd</div>
+    <div onClick={() => actions.getMe()} >get me</div>
   </fieldset>
 )
 
