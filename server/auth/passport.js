@@ -20,12 +20,12 @@ passport.use('localSignIn', new Strategy(
       }
       if (!user) {
         return done(null, false, {
-          message: 'Wrong login or password'
+          message: 'Wrong credentials'
         })
       }
       if (!user.validPassword(password)) {
         return done(null, false, {
-          message: 'Wrong login or password'
+          message: 'Wrong credentials'
         })
       }
 
