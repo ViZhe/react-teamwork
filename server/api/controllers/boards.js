@@ -1,18 +1,38 @@
 
+import Board from '../models/board'
+
 
 export default {
+  add: (req, res) => {
+    console.log('boards', 'add', req, res)
+  },
   list: (req, res) => {
-    res.status(200).json([
-      {
-        id: 'boardId1',
-        name: 'Первая доска',
-        position: 1
-      },
-      {
-        id: 'boardId2',
-        name: 'Вторая доска',
-        position: 2
-      }
-    ])
+    const userId = req.session.passport && req.session.passport.user
+    if (!userId) {
+      return res.status(401).json({
+        message: 'Unauthorized'
+      })
+    }
+
+    return Board.find({owner_id: userId})
+      .then((boards) => {
+        if (!boards) {
+          return res.status(401).json({ // TODO: edit code
+            message: 'Not boards'
+          })
+        }
+
+        return res.status(200).json(boards)
+      })
+      .catch(err => res.status(500).json(err))
+  },
+  item: (req, res) => {
+    console.log('boards', 'item', req, res)
+  },
+  delete: (req, res) => {
+    console.log('boards', 'delete', req, res)
+  },
+  update: (req, res) => {
+    console.log('boards', 'update', req, res)
   }
 }
