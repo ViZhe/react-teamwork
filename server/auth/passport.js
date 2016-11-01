@@ -16,12 +16,7 @@ passport.use('localSignIn', new Strategy(
   (req, email, password, done) => {
     User.findOne({email})
       .then((user) => {
-        if (!user) {
-          return done(null, false, {
-            message: 'Wrong credentials'
-          })
-        }
-        if (!user.validPassword(password)) {
+        if (!user || !user.validPassword(password)) {
           return done(null, false, {
             message: 'Wrong credentials'
           })
