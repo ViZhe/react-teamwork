@@ -4,13 +4,13 @@ import React from 'react'
 import ColumnList from '../ColumnList'
 
 
-const BoardIndex = ({board = {}}) => {
+const BoardIndex = ({_id, name, owner_id: ownerId}) => {
   console.log('BoardIndex')
 
   return (
     <div>
-      <h2>{board.id} - {board && board.name}</h2>
-      <ColumnList boardId={board.id} />
+      <h2>{_id} - {name} - {ownerId}</h2>
+      <ColumnList boardId={_id} />
     </div>
   )
 }

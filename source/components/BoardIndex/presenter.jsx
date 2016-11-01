@@ -20,7 +20,7 @@ class BoardIndexContainer extends Component {
 
     return (
       <BoardIndex
-        board={entityStore.getEntitiesByKey('boards')[id]}
+        {...entityStore.getEntitiesByKey('boards')[id]}
       />
     )
   }

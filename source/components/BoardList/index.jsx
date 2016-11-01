@@ -20,8 +20,7 @@ class BoardListContainer extends Component {
     const boards = {}
 
     boardsIds.forEach((key) => {
-      const board = boardsAll[key]
-      boards[board.id] = board
+      boards[key] = boardsAll[key]
     })
 
     return (

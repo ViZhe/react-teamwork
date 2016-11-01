@@ -3,9 +3,9 @@ import React from 'react'
 import {Link} from 'react-router'
 
 
-const Board = ({id, name, position}) => (
+const Board = ({_id, name, position}) => (
   <div>
-    {position}) {id} - {name} <Link to={`/b/${id}`} >link</Link>
+    {position}) {_id} - {name} <Link to={`/b/${_id}`} >link</Link>
   </div>
 )
 
