@@ -10,25 +10,25 @@ export default {
         message: 'Unauthorized'
       })
     }
-    return User.findById(userId, (err, user) => {
-      if (err) {
-        return res.status(500).json(err)
-      }
-      if (!user) {
-        return res.status(401).json({
-          message: 'Unauthorized'
+
+    return User.findById(userId)
+      .then((user) => {
+        if (!user) {
+          return res.status(401).json({
+            message: 'Unauthorized'
+          })
+        }
+
+        const {
+          _id,
+          email
+        } = user
+
+        return res.json({
+          _id,
+          email
         })
-      }
-
-      const {
-        _id: id,
-        email
-      } = user
-
-      return res.status(200).json({
-        id,
-        email
       })
-    })
+      .catch(err => res.status(500).json(err))
   }
 }
