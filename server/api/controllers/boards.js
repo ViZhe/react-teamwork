@@ -7,14 +7,7 @@ export default {
     console.log('boards', 'add', req, res)
   },
   list: (req, res) => {
-    const userId = req.session.passport && req.session.passport.user
-    if (!userId) {
-      return res.status(401).json({
-        message: 'Unauthorized'
-      })
-    }
-
-    return Board.find({owner_id: userId})
+    Board.find({owner_id: req.userId})
       .then(boards => res.json(boards))
       .catch(err => res.status(500).json(err))
   },

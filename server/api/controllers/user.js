@@ -4,14 +4,7 @@ import User from '../../auth/model'
 
 export default {
   get: (req, res) => {
-    const userId = req.session.passport && req.session.passport.user
-    if (!userId) {
-      return res.status(401).json({
-        message: 'Unauthorized'
-      })
-    }
-
-    return User.findById(userId)
+    User.findById(req.userId)
       .then((user) => {
         if (!user) {
           return res.status(401).json({
