@@ -5,10 +5,12 @@ import entityStore from '../../stores/entityStore'
 
 
 export const fetchEntity = (name) => {
-  fetch(`/api/v1/${name}`)
+  fetch(`/api/v1/${name}`, {
+    credentials: 'include'
+  })
     .then(response => response.json())
     .then((data) => {
-      const normalizedData = normalize(data, arrayOf(new Schema(name)))
+      const normalizedData = normalize(data, arrayOf(new Schema(name, {idAttribute: '_id'})))
       entityStore.mergeEntities(name, normalizedData.entities[name])
     })
 }
