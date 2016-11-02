@@ -4,14 +4,27 @@ import {arrayOf, normalize, Schema} from 'normalizr'
 import entityStore from '../../stores/entityStore'
 
 
-export const fetchEntity = (name) => {
-  fetch(`/api/v1/${name}`, {
+const cardSchema = new Schema('cards')
+const columnSchema = new Schema('columns')
+const boardSchema = new Schema('boards')
+
+columnSchema.define({
+  cards: arrayOf(cardSchema)
+})
+boardSchema.define({
+  columns: arrayOf(columnSchema)
+})
+
+export const fetchEntity = () => {
+  fetch('/api/v1/boards', {
     credentials: 'include'
   })
     .then(response => response.json())
     .then((data) => {
-      const normalizedData = normalize(data, arrayOf(new Schema(name)))
-      entityStore.mergeEntities(name, normalizedData.entities[name])
+      const normalizedData = normalize(data, arrayOf(boardSchema)).entities
+      Object.keys(normalizedData).forEach((key) => {
+        entityStore.mergeEntities(key, normalizedData[key])
+      })
     })
 }
 
