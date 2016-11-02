@@ -7,13 +7,14 @@ import {hideProps} from '../utils/mongoose'
 
 const userSchema = new Schema({
   email: {
+    required: true,
     type: String,
     unique: true,
-    required: true
+    lowercase: true
   },
   password: {
-    type: String,
-    required: true
+    required: true,
+    type: String
   }
 }, {
   toJSON: {
