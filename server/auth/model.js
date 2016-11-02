@@ -2,6 +2,8 @@
 import mongoose, {Schema} from 'mongoose'
 import bcrypt from 'bcryptjs'
 
+import {hideProps} from '../utils/mongoose'
+
 
 const userSchema = new Schema({
   email: {
@@ -12,6 +14,13 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
+  }
+}, {
+  toJSON: {
+    versionKey: false,
+    virtuals: true,
+    hide: ['_id', 'password'],
+    transform: hideProps
   }
 })
 
