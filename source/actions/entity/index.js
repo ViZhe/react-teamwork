@@ -10,7 +10,7 @@ export const fetchEntity = (name) => {
   })
     .then(response => response.json())
     .then((data) => {
-      const normalizedData = normalize(data, arrayOf(new Schema(name, {idAttribute: '_id'})))
+      const normalizedData = normalize(data, arrayOf(new Schema(name)))
       entityStore.mergeEntities(name, normalizedData.entities[name])
     })
 }
