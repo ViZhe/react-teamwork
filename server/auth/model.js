@@ -17,6 +17,10 @@ const userSchema = new Schema({
     type: String
   }
 }, {
+  toObject: {
+    virtuals: true,
+    transform: hideProps
+  },
   toJSON: {
     versionKey: false,
     virtuals: true,

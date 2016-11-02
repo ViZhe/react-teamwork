@@ -15,6 +15,7 @@ passport.use('localSignIn', new Strategy(
   strategyOption,
   (req, email, password, done) => {
     User.findOne({email})
+      .exec()
       .then((user) => {
         if (!user || !user.validPassword(password)) {
           return done(null, false, {
@@ -22,8 +23,7 @@ passport.use('localSignIn', new Strategy(
           })
         }
 
-        const {_id} = user
-        return done(null, {_id})
+        return done(null, user)
       })
       .catch(done)
   }
@@ -33,6 +33,7 @@ passport.use('localSignUp', new Strategy(
   strategyOption,
   (req, email, password, done) => {
     User.findOne({email})
+      .exec()
       .then((user) => {
         if (user) {
           return done(null, false, {
@@ -44,19 +45,16 @@ passport.use('localSignUp', new Strategy(
         newUser.email = email
         newUser.password = newUser.encryptPassword(password)
 
-        return newUser.save((err, {_id}) => {
-          if (err) {
-            return done(err)
-          }
-          return done(null, {_id})
-        })
+        newUser.save().catch(done)
+
+        return done(null, newUser)
       })
       .catch(done)
   }
 ))
 
-passport.serializeUser(({_id}, done) => {
-  done(null, _id)
+passport.serializeUser(({id}, done) => {
+  done(null, id)
 })
 
 passport.deserializeUser((id, done) => {
