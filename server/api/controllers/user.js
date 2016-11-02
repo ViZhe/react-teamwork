@@ -12,15 +12,7 @@ export default {
           })
         }
 
-        const {
-          _id,
-          email
-        } = user
-
-        return res.json({
-          _id,
-          email
-        })
+        return res.json(user)
       })
       .catch(err => res.status(500).json(err))
   }
