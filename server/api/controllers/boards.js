@@ -8,6 +8,12 @@ export default {
   },
   list: (req, res) => {
     Board.find({owner_id: req.userId})
+      .populate({
+        path: 'columns',
+        populate: {
+          path: 'cards'
+        }
+      })
       .then(boards => res.json(boards))
       .catch(err => res.status(500).json(err))
   },
