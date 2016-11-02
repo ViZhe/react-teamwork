@@ -14,6 +14,7 @@ export default {
           path: 'cards'
         }
       })
+      .exec()
       .then(boards => res.json(boards))
       .catch(err => res.status(500).json(err))
   },

@@ -5,6 +5,7 @@ import User from '../../auth/model'
 export default {
   get: (req, res) => {
     User.findById(req.userId)
+      .exec()
       .then((user) => {
         if (!user) {
           return res.status(401).json({
