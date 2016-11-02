@@ -10,7 +10,7 @@ import BoardList from './presenter'
 @observer
 class BoardListContainer extends Component {
   componentDidMount() {
-    actions.fetchEntity('boards')
+    actions.fetchEntity()
   }
   render() {
     const {entityStore} = this.props

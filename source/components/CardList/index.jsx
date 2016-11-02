@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import {observer, inject} from 'mobx-react'
 
-import * as actions from '../../actions'
+// import * as actions from '../../actions'
 import CardList from './presenter'
 
 
@@ -10,7 +10,8 @@ import CardList from './presenter'
 @observer
 class CardListContainer extends Component {
   componentDidMount() {
-    actions.fetchEntity('cards')
+    console.log('CardListContainer')
+    // actions.fetchEntity('cards')
   }
   render() {
     const {entityStore, columnId} = this.props

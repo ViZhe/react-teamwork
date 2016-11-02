@@ -13,7 +13,7 @@ import BoardIndex from './index'
 @observer
 class BoardIndexContainer extends Component {
   componentDidMount() {
-    actions.fetchEntity('boards')
+    actions.fetchEntity()
   }
   render() {
     const {entityStore, params: {id}} = this.props

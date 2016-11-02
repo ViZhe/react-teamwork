@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import {observer, inject} from 'mobx-react'
 
-import * as actions from '../../actions'
+// import * as actions from '../../actions'
 import ColumnList from './presenter'
 
 
@@ -10,7 +10,8 @@ import ColumnList from './presenter'
 @observer
 class ColumnListContainer extends Component {
   componentDidMount() {
-    actions.fetchEntity('columns')
+    console.log('ColumnListContainer')
+    // actions.fetchEntity('columns')
   }
   render() {
     const {entityStore, boardId} = this.props
