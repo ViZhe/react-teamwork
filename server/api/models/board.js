@@ -1,6 +1,8 @@
 
 import mongoose, {Schema} from 'mongoose'
 
+// eslint-disable-next-line no-unused-vars
+import Column from './column' // TODO: need for work virtual, check other ways
 import {hideProps} from '../../utils/mongoose'
 
 

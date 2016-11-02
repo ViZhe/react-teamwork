@@ -1,6 +1,8 @@
 
 import mongoose, {Schema} from 'mongoose'
 
+// eslint-disable-next-line no-unused-vars
+import Card from './card'
 import {hideProps} from '../../utils/mongoose'
 
 
