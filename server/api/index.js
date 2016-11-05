@@ -6,6 +6,7 @@ import boards from './controllers/boards'
 import columns from './controllers/columns'
 import cards from './controllers/cards'
 import user from './controllers/user'
+import tools from './controllers/tools'
 
 
 const router = new Router()
@@ -30,5 +31,7 @@ router.post('/cards', cards.add)
 router.put('/cards/:id', cards.update)
 router.delete('/cards/:id', cards.delete)
 
+router.get('/tools/del', tools.delete)
+router.get('/tools/gen', tools.generate)
 
 export default router
