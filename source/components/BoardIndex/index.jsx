@@ -1,22 +1,30 @@
 
-import React from 'react'
+import React, {Component} from 'react'
+import {observer, inject} from 'mobx-react'
+import {DragDropContext as dragDropContext} from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
-import ColumnList from '../ColumnList'
+import * as actions from '../../actions'
+import BoardIndex from './index'
 
 
-const BoardIndex = ({id, name, owner_id: ownerId, columns}) => {
-  console.log('BoardIndex')
+@dragDropContext(HTML5Backend)
+@inject('entityStore')
+@observer
+class BoardIndexContainer extends Component {
+  componentDidMount() {
+    actions.fetchEntity()
+  }
+  render() {
+    const {entityStore, params: {id}} = this.props
 
-  return (
-    <div>
-      <h2>{id} - {name} - {ownerId}</h2>
-      <ColumnList
-        boardId={id}
-        columnsIds={columns || []}
+    return (
+      <BoardIndex
+        {...entityStore.getEntitiesByKey('boards')[id]}
       />
-    </div>
-  )
+    )
+  }
 }
 
 
-export default BoardIndex
+export default BoardIndexContainer
