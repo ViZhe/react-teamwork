@@ -1,6 +1,7 @@
 
 import Card from '../models/card'
 
+
 export default {
   add: (req, res) => {
     const {column_id, name} = req.body
