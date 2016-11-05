@@ -23,7 +23,7 @@ router.get('/boards/:id', boards.item)
 router.put('/boards/:id', boards.update)
 router.delete('/boards/:id', boards.delete)
 
-router.get('/cards/:id', cards.add)
+router.post('/cards', cards.add)
 router.put('/cards/:id', cards.update)
 router.delete('/cards/:id', cards.delete)
 
