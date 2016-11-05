@@ -9,7 +9,7 @@ export default {
       column_id,
       name
     })
-      .then(boards => res.json(boards))
+      .then(card => res.json(card))
       .catch(err => res.status(500).json(err))
   },
   update: (req, res) => {
