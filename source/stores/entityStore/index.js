@@ -6,18 +6,27 @@ class EntityStore {
   @observable entities = map({})
 
   @action syncEntities = (key, entity) => {
-    this.entities.get(key).set(entity.id, entity)
+    const newEntity = entity
     if (key === 'cards') {
       this.entities
         .get('columns')
         .get(entity.column_id).cards
         .push(entity.id)
     } else if (key === 'columns') {
+      if (!newEntity.cards) {
+        newEntity.cards = []
+      }
       this.entities
         .get('boards')
         .get(entity.board_id).columns
         .push(entity.id)
+    } else if (key === 'boards') {
+      if (!newEntity.columns) {
+        newEntity.columns = []
+      }
     }
+
+    this.entities.get(key).set(entity.id, newEntity)
   }
 
   @action mergeEntities = (key, entities) => {
