@@ -16,7 +16,14 @@ export default {
       .catch(err => res.status(500).json(err))
   },
   add: (req, res) => {
-    console.log('boards', 'add', req, res)
+    const {name} = req.body
+
+    Board.create({
+      owner_id: req.userId,
+      name
+    })
+      .then(board => res.json(board))
+      .catch(err => res.status(500).json(err))
   },
   item: (req, res) => {
     console.log('boards', 'item', req, res)
