@@ -6,9 +6,8 @@ import ColumnAdd from '../ColumnAdd'
 
 
 const ColumnList = ({columns, boardId}) => {
-  const columnsIds = Object.keys(columns)
-  const columnWrap = columnsIds.map((key, index) => (
-    <Column key={index} column={columns[key]} />
+  const columnWrap = columns.map((column, index) => (
+    <Column key={index} column={column} />
   ))
 
   return (
