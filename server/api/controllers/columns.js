@@ -1,26 +1,22 @@
 
+import Column from '../models/column'
+
 
 export default {
-  list: (req, res) => {
-    res.status(200).json([
-      {
-        id: 'columnId1',
-        board_id: 'boardId1',
-        name: 'Первый столбец',
-        position: 1
-      },
-      {
-        id: 'columnId2',
-        board_id: 'boardId1',
-        name: 'Второй столбец',
-        position: 2
-      },
-      {
-        id: 'columnId3',
-        board_id: 'boardId2',
-        name: 'Третий столбец',
-        position: 1
-      }
-    ])
+  add: (req, res) => {
+    const {board_id, name} = req.body
+
+    Column.create({
+      board_id,
+      name
+    })
+      .then(column => res.json(column))
+      .catch(err => res.status(500).json(err))
+  },
+  update: (req, res) => {
+    console.log('columns', 'update', req, res)
+  },
+  delete: (req, res) => {
+    console.log('columns', 'delete', req, res)
   }
 }
