@@ -5,7 +5,7 @@ import {DragDropContext as dragDropContext} from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 
 import * as actions from '../../actions'
-import BoardIndex from './index'
+import BoardIndex from './presenter'
 
 
 @dragDropContext(HTML5Backend)
