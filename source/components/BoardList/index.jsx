@@ -17,10 +17,10 @@ class BoardListContainer extends Component {
 
     const boardsAll = entityStore.getEntitiesByKey('boards')
     const boardsIds = Object.keys(boardsAll)
-    const boards = {}
+    const boards = []
 
-    boardsIds.forEach((key) => {
-      boards[key] = boardsAll[key]
+    boardsIds.forEach((id) => {
+      boards.push(boardsAll[id])
     })
 
     return (
