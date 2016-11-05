@@ -1,6 +1,7 @@
 
 import {arrayOf, normalize, Schema} from 'normalizr'
 
+import {checkHttpStatus} from '../../utils'
 import entityStore from '../../stores/entityStore'
 
 
@@ -29,17 +30,22 @@ export const fetchEntity = () => {
 }
 
 export const addEntity = (name, data) => {
-  const id = `id${Math.random()}`
-  const entity = data
-  entity.id = id
-
-  entityStore.syncEntities(name, entity)
+  fetch(`/api/v1/${name}`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(checkHttpStatus)
+    .then(response => response.json())
+    .then((json) => {
+      entityStore.syncEntities(name, json)
+    })
+    .catch(console.error)
 }
 
 export const updateEntity = (name, data) => {
   entityStore.updateEntities(name, data)
-}
-
-export const testEntity = () => {
-  console.log('testEntity', Math.random())
 }
