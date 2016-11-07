@@ -1,4 +1,7 @@
 
+import {checkHttpStatus} from '../../utils'
+
+
 export const signUp = (data) => {
   fetch('/auth/v1/signup', {
     method: 'POST',
@@ -11,8 +14,10 @@ export const signUp = (data) => {
       password: data.password
     })
   })
+    .then(checkHttpStatus)
     .then(response => response.json())
-    .then(result => console.log(result))
+    .then(json => console.log(json))
+    .catch(console.error)
 }
 
 export const signIn = (data) => {
@@ -27,8 +32,10 @@ export const signIn = (data) => {
       password: data.password
     })
   })
+    .then(checkHttpStatus)
     .then(response => response.json())
-    .then(result => console.log(result))
+    .then(json => console.log(json))
+    .catch(console.error)
 }
 
 export const signOut = (data) => {
