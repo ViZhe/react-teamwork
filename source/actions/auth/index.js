@@ -38,6 +38,13 @@ export const signIn = (data) => {
     .catch(console.error)
 }
 
-export const signOut = (data) => {
-  console.log('singOut', data)
+export const signOut = () => {
+  fetch('/auth/v1/signout', {
+    method: 'GET',
+    credentials: 'include'
+  })
+    .then(checkHttpStatus)
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(console.error)
 }
