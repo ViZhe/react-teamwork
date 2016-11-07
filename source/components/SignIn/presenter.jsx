@@ -3,7 +3,8 @@ import React from 'react'
 import {observer} from 'mobx-react'
 import * as actions from '../../actions'
 
-/* eslint-disable */
+
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 const SignIn = ({form, handleSubmit}) => (
   <fieldset style={{margin: '10px 0 20px'}}>
     <legend>SignIn</legend>
@@ -27,6 +28,7 @@ const SignIn = ({form, handleSubmit}) => (
       <button>Войти</button>
     </form>
     <div onClick={() => actions.getMe()} >get me</div>
+    <div onClick={() => actions.signOut()} >sign out</div>
   </fieldset>
 )
 
