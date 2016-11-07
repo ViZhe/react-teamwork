@@ -32,6 +32,13 @@ const routes = (passport) => {
     ))(req, res, next)
   ))
 
+  router.get('/signout', (req, res) => {
+    req.logOut()
+    return res.status(200).json({
+      signout: true
+    })
+  })
+
   return router
 }
 
