@@ -10,7 +10,7 @@ import connectMongo from 'connect-mongo'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
-import webpackConfig from '../webpack/webpack.config.client.development'
+import webpackConfig from '../../webpack/webpack.config.client.development'
 
 import config from './config.gitsecret'
 import api from './api'
@@ -28,7 +28,7 @@ const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || '3000'
 const isProduction = process.env.NODE_ENV === 'production'
 
-const assets = isProduction ? require('../assets.json') : ''
+const assets = isProduction ? require('../../assets.json') : ''
 
 const MongoStore = connectMongo(session)
 

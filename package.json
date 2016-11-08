@@ -5,7 +5,7 @@
   "main": "source/index",
   "scripts": {
     "start": "npm run start:dev",
-    "start:dev": "nodemon --exec babel-node ./server/ --watch ./server/",
+    "start:dev": "nodemon --exec babel-node ./source/server/ --watch ./source/server/",
     "start:prod": "nodemon ./dist/server",
     "build": "npm run clean && npm run build:client && npm run build:server",
     "build:client": "NODE_ENV=production webpack --config webpack/webpack.config.client.production.js",

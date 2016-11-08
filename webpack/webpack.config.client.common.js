@@ -10,7 +10,7 @@ module.exports = {
   entry: {
     main: [
       'babel-polyfill',
-      './source/index'
+      './source/client/index'
     ],
     vendor: [
       'react',

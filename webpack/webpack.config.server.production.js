@@ -15,7 +15,7 @@ const getExternals = () => {
 
 module.exports = {
   target: 'node',
-  entry: './server/index',
+  entry: './source/server/index',
   output: {
     path: path.resolve(process.cwd(), 'dist'),
     filename: 'server.js'
