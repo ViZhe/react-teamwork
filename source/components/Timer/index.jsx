@@ -15,9 +15,7 @@ class BoardsContainer extends Component {
     }
   }
   componentWillUnmount() {
-    for (const counter of this.state.counters) {
-      clearInterval(counter)
-    }
+    this.state.counters.forEach(counter => clearInterval(counter))
   }
   handleAddOneTimer = () => {
     actions.upTimer(5)
