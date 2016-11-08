@@ -1,6 +1,8 @@
 
 export default {
-  db: 'mongodb://path.to:123456/db',
+  databases: {
+    mongo: 'mongodb://path.to:123456/db'
+  },
   session: {
     secret: 'SECRETCODE'
   }

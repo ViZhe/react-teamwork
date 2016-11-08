@@ -21,7 +21,7 @@ import {
 
 
 mongoose.Promise = global.Promise
-mongoose.connect(config.db)
+mongoose.connect(config.databases.mongo)
 
 const server = new Express()
 const host = process.env.HOST || '0.0.0.0'
