@@ -1,7 +1,7 @@
 
 import {Router} from 'express'
 
-import {authMiddleware} from '../middlewares'
+import {authMiddleware} from '../middleware'
 import boards from './controllers/boards'
 import columns from './controllers/columns'
 import cards from './controllers/cards'
