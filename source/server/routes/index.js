@@ -7,8 +7,8 @@ import toolsRoutes from './tools'
 import authRoutes from './auth'
 
 
-const routes = server => (
-  server
+const routes = app => (
+  app
     .use('/api/v1/boards', boardsRoutes)
     .use('/api/v1/cards', columnsRoutes)
     .use('/api/v1/cards', cardsRoutes)

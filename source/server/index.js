@@ -20,7 +20,7 @@ import routesInit from './routes'
 mongoose.Promise = global.Promise
 mongoose.connect(config.databases.mongo)
 
-const server = new Express()
+const app = new Express()
 const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || '3000'
 const isProduction = process.env.NODE_ENV === 'production'
@@ -30,7 +30,7 @@ const assets = isProduction ? require('../../assets.json') : ''
 const MongoStore = connectMongo(session)
 
 const compiler = webpack(webpackConfig)
-server.use(webpackDevMiddleware(compiler, {
+app.use(webpackDevMiddleware(compiler, {
   stats: {
     version: false,
     hash: false,
@@ -40,27 +40,27 @@ server.use(webpackDevMiddleware(compiler, {
     chunkModules: false
   }
 }))
-server.use(webpackHotMiddleware(compiler))
+app.use(webpackHotMiddleware(compiler))
 
-server.disable('x-powered-by')
-server.use(cors())
-server.use(bodyParser.json())
-server.use(bodyParser.urlencoded({
+app.disable('x-powered-by')
+app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
   extended: true
 }))
-server.use(cookieParser())
-server.use(session({
+app.use(cookieParser())
+app.use(session({
   key: 'sid',
   secret: config.session.secret,
   store: new MongoStore({mongooseConnection: mongoose.connection}),
   resave: true,
   saveUninitialized: true
 }))
-server.use(passport.initialize())
-server.use(passport.session())
-routesInit(server)
+app.use(passport.initialize())
+app.use(passport.session())
+routesInit(app)
 
-server.get('*', (req, res) => {
+app.get('*', (req, res) => {
   res.status(200).send(`
     <!DOCTYPE html>
     <html lang="ru-RU">
@@ -81,7 +81,7 @@ server.get('*', (req, res) => {
 })
 
 
-server.listen(port, host, () =>
+app.listen(port, host, () =>
   console.info(`
 ######### (╮°-°)╮┳━━┳ #########
 
