@@ -81,7 +81,7 @@ app.get('*', (req, res) => {
 })
 
 
-app.listen(port, host, () =>
+app.listen(port, host, () => (
   console.info(`
 ######### (╮°-°)╮┳━━┳ #########
 
@@ -89,6 +89,6 @@ app.listen(port, host, () =>
 # ==> Link: http://${host}:${port}
 # ==> Mode: ${isProduction ? 'Production ' : 'Development'}
 
-######### ( ╯°□°)╯ ┻━━┻ #########
+######### (╯°□°)╯ ┻━━┻ #########
 `)
-)
+))
