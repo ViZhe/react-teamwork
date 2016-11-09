@@ -13,11 +13,8 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackConfig from '../../webpack/webpack.config.client.development'
 
 import config from './config.gitsecret'
-import api from './api'
-import {
-  passport,
-  routes as authRoutes
-} from './auth'
+import passport from './middleware/passport'
+import routesInit from './routes'
 
 
 mongoose.Promise = global.Promise
@@ -61,8 +58,9 @@ server.use(session({
 }))
 server.use(passport.initialize())
 server.use(passport.session())
-server.use('/auth/v1/', authRoutes(passport))
-server.use('/api/v1/', api)
+routesInit(server)
+// server.use('/auth/v1/', authRoutes(passport))
+// server.use('/api/v1/', api)
 
 server.get('*', (req, res) => {
   res.status(200).send(`
