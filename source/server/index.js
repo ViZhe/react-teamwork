@@ -59,8 +59,6 @@ server.use(session({
 server.use(passport.initialize())
 server.use(passport.session())
 routesInit(server)
-// server.use('/auth/v1/', authRoutes(passport))
-// server.use('/api/v1/', api)
 
 server.get('*', (req, res) => {
   res.status(200).send(`
