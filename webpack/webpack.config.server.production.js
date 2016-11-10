@@ -1,7 +1,7 @@
 
-const webpack = require('webpack')
-const fs = require('fs')
-const path = require('path')
+import fs from 'fs'
+import path from 'path'
+import Webpack from 'webpack'
 
 
 const getExternals = () => (
@@ -9,9 +9,9 @@ const getExternals = () => (
     .filter(i => i !== '.bin')
 )
 
-module.exports = {
+export default {
   target: 'node',
-  entry: './source/server/index',
+  entry: './source/server',
   output: {
     path: path.resolve(process.cwd(), 'dist'),
     filename: 'server.js'
@@ -33,17 +33,13 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        plugins: [
-          'transform-react-constant-elements',
-          'transform-react-inline-elements'
-        ],
-        exclude: /(node_modules)/
+        exclude: /node_modules/
       }
     ]
   },
   plugins: [
-    new webpack.IgnorePlugin(/\.(css|less|scss|svg|png|jpe?g|png)$/),
-    new webpack.optimize.UglifyJsPlugin({
+    new Webpack.IgnorePlugin(/\.(css|less|scss|svg|png|jpe?g|png)$/),
+    new Webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
