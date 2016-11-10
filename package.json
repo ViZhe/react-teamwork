@@ -8,9 +8,10 @@
     "start:dev": "nodemon --exec babel-node ./source/server/ --watch ./source/server/",
     "start:prod": "nodemon ./dist/server",
     "build": "npm run clean && npm run build:client && npm run build:server",
-    "build:client": "NODE_ENV=production webpack --config webpack/webpack.config.client.production.js",
-    "build:server": "NODE_ENV=production webpack --config webpack/webpack.config.server.production.js",
-    "clean": "rm -rf dist"
+    "build:client": "NODE_ENV=production npm run webpack -- --config webpack/webpack.config.client.production.js",
+    "build:server": "NODE_ENV=production npm run webpack -- --config webpack/webpack.config.server.production.js",
+    "clean": "rm -rf dist",
+    "webpack": "babel-node ./node_modules/webpack/bin/webpack"
   },
   "author": "ViZhe",
   "license": "MIT",
@@ -62,7 +63,6 @@
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.3.2",
-    "react-router": "^3.0.0",
-    "redux": "^3.6.0"
+    "react-router": "^3.0.0"
   }
 }
