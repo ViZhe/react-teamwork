@@ -7,15 +7,14 @@ import toolsRoutes from './tools'
 import authRoutes from './auth'
 
 
-const routes = app => (
-  app
-    .use('/api/v1/boards', boardsRoutes)
-    .use('/api/v1/cards', columnsRoutes)
-    .use('/api/v1/cards', cardsRoutes)
-    .use('/api/v1/user', userRoutes)
-    .use('/api/v1/tools', toolsRoutes)
-    .use('/auth/v1', authRoutes)
-)
+const routes = (app) => {
+  app.use('/api/v1/boards', boardsRoutes)
+  app.use('/api/v1/cards', columnsRoutes)
+  app.use('/api/v1/cards', cardsRoutes)
+  app.use('/api/v1/user', userRoutes)
+  app.use('/api/v1/tools', toolsRoutes)
+  app.use('/auth/v1', authRoutes)
+}
 
 
 export default routes

@@ -14,7 +14,7 @@ import webpackConfig from '../../webpack/webpack.config.client.development'
 
 import config from './config.gitsecret'
 import passport from './middleware/passport'
-import routesInit from './routes'
+import routes from './routes'
 
 
 mongoose.Promise = global.Promise
@@ -58,7 +58,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-routesInit(app)
+routes(app)
 
 app.get('*', (req, res) => {
   res.status(200).send(`
