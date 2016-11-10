@@ -1,17 +1,15 @@
 
-const webpack = require('webpack')
-const webpackConfig = require('./webpack.config.client.common')
+import Webpack from 'webpack'
+import webpackConfig from './webpack.config.client.common'
 
-
-webpackConfig.devtool = 'cheap-module-eval-source-map'
 
 webpackConfig.entry.main.push(
-  'webpack-hot-middleware/client?reload=true'
+  'webpack-hot-middleware/client'
 )
 
 webpackConfig.plugins.push(
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.DefinePlugin({
+  new Webpack.HotModuleReplacementPlugin(),
+  new Webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify('development')
     }
@@ -19,4 +17,4 @@ webpackConfig.plugins.push(
 )
 
 
-module.exports = webpackConfig
+export default webpackConfig

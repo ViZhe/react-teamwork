@@ -1,9 +1,9 @@
 
-const path = require('path')
-const webpack = require('webpack')
+import path from 'path'
+import Webpack from 'webpack'
 
 
-module.exports = {
+export default {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -16,7 +16,8 @@ module.exports = {
       'react',
       'react-dom',
       'react-router',
-      'immutable'
+      'mobx',
+      'mobx-react'
     ]
   },
   output: {
@@ -37,13 +38,15 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loaders: ['react-hot', 'babel-loader'],
-        plugins: ['transform-runtime', 'transform-decorators-legacy'],
+        plugins: [
+          'transform-runtime'
+        ],
         exclude: /node_modules/
       }
     ]
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin()
+    new Webpack.optimize.OccurenceOrderPlugin()
   ],
   stats: {
     version: false,
