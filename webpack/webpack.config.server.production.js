@@ -4,14 +4,10 @@ const fs = require('fs')
 const path = require('path')
 
 
-const getExternals = () => {
-  const nodeModules = fs.readdirSync(path.join(process.cwd(), 'node_modules'))
-  return nodeModules.reduce((ext, mod) => {
-    const result = ext
-    result[mod] = `commonjs ${mod}`
-    return result
-  }, {})
-}
+const getExternals = () => (
+  fs.readdirSync('node_modules')
+    .filter(i => i !== '.bin')
+)
 
 module.exports = {
   target: 'node',
