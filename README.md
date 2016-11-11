@@ -1,6 +1,7 @@
 
 ## TODO
 
+* [ ] Избавиться от actions в client
 * [ ] Разобраться с сорсмапами
 * [ ] Добавить на сервер source-map-support
 * [ ] Socket.io
