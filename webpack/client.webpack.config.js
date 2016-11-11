@@ -37,11 +37,6 @@ const config = {
         test: /\.jsx?$/,
         loader: 'eslint',
         exclude: /node_modules/
-      },
-      {
-        test: /\.jsx?$/,
-        loaders: ['react-hot', 'babel'],
-        exclude: /node_modules/
       }
     ]
   },
@@ -62,6 +57,12 @@ const config = {
   }
 }
 
+const jsRule = {
+  test: /\.jsx?$/,
+  loaders: ['babel'],
+  exclude: /node_modules/
+}
+
 if (isProduction) {
   config.plugins.push(
     new Webpack.optimize.CommonsChunkPlugin({
@@ -80,10 +81,13 @@ if (isProduction) {
   config.entry.main.unshift(
     'webpack-hot-middleware/client'
   )
+  jsRule.loaders.unshift('react-hot')
   config.plugins.push(
     new Webpack.HotModuleReplacementPlugin()
   )
 }
+
+config.module.rules.push(jsRule)
 
 
 export default config
