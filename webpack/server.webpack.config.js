@@ -18,14 +18,13 @@ export default {
   },
   externals: getExternals(),
   module: {
-    preLoaders: [
+    rules: [
       {
+        enforce: 'pre',
         test: /\.js$/,
         loaders: ['eslint'],
         exclude: /node_modules/
-      }
-    ],
-    loaders: [
+      },
       {
         test: /\.json$/,
         loader: 'json-loader'
@@ -34,9 +33,11 @@ export default {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        plugins: [
-          'transform-runtime'
-        ]
+        query: {
+          plugins: [
+            'transform-runtime'
+          ]
+        }
       }
     ]
   },

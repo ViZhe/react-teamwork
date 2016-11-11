@@ -10,7 +10,7 @@ import connectMongo from 'connect-mongo'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
-import webpackConfig from '../../webpack/webpack.config.client.development'
+import webpackConfig from '../../webpack/client.webpack.config'
 
 import config from './config.gitsecret'
 import passport from './middleware/passport'
@@ -31,14 +31,7 @@ const MongoStore = connectMongo(session)
 
 const compiler = webpack(webpackConfig)
 app.use(webpackDevMiddleware(compiler, {
-  stats: {
-    version: false,
-    hash: false,
-    timings: true,
-    colors: true,
-    chunk: false,
-    chunkModules: false
-  }
+  stats: webpackConfig.stats
 }))
 app.use(webpackHotMiddleware(compiler))
 
