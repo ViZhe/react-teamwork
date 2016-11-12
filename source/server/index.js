@@ -1,4 +1,5 @@
 
+import fs from 'fs'
 import Express from 'express'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
@@ -12,10 +13,14 @@ import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackConfig from '../../webpack/client.webpack.config'
 
-import config from './config.gitsecret'
 import passport from './middleware/passport'
 import routes from './routes'
 
+
+// eslint-disable-next-line import/no-unresolved
+const config = fs.existsSync(`${process.cwd()}/source/server/config.gitsecret.js`)
+  ? require('./config.gitsecret').default
+  : require('./config.example').default
 
 mongoose.Promise = global.Promise
 mongoose.connect(config.databases.mongo)
