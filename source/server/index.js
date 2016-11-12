@@ -16,6 +16,7 @@ import webpackConfig from '../../webpack/client.webpack.config'
 import passport from './middleware/passport'
 import routes from './routes'
 
+
 const configPath = fs.existsSync(`${process.cwd()}/source/server/config.gitsecret.js`)
   ? './config.gitsecret'
   : './config.example'
@@ -57,7 +58,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-routes(app)
+app.use(routes)
 
 app.get('*', (req, res) => {
   res.status(200).send(`
