@@ -2,7 +2,7 @@
 import React from 'react'
 import {Route, IndexRoute} from 'react-router'
 
-import {App} from './components'
+import App from './components/App'
 import BoardIndex from './components/BoardIndex'
 import BoardList from './components/BoardList'
 import NotFound from './components/NotFound'
