@@ -16,11 +16,12 @@ import webpackConfig from '../../webpack/client.webpack.config'
 import passport from './middleware/passport'
 import routes from './routes'
 
+const configPath = fs.existsSync(`${process.cwd()}/source/server/config.gitsecret.js`)
+  ? './config.gitsecret'
+  : './config.example'
 
-// eslint-disable-next-line import/no-unresolved
-const config = fs.existsSync(`${process.cwd()}/source/server/config.gitsecret.js`)
-  ? require('./config.gitsecret').default
-  : require('./config.example').default
+// eslint-disable-next-line import/no-dynamic-require
+const config = require(configPath).default
 
 mongoose.Promise = global.Promise
 mongoose.connect(config.databases.mongo)
