@@ -35,7 +35,7 @@ const config = {
       {
         enforce: 'pre',
         test: /\.jsx?$/,
-        loader: 'eslint',
+        loader: 'eslint-loader',
         exclude: /node_modules/
       }
     ]
@@ -59,7 +59,7 @@ const config = {
 
 const jsRule = {
   test: /\.jsx?$/,
-  loaders: ['babel'],
+  loaders: ['babel-loader'],
   exclude: /node_modules/
 }
 
@@ -81,7 +81,7 @@ if (isProduction) {
   config.entry.main.unshift(
     'webpack-hot-middleware/client'
   )
-  jsRule.loaders.unshift('react-hot')
+  jsRule.loaders.unshift('react-hot-loader')
   config.plugins.push(
     new Webpack.HotModuleReplacementPlugin()
   )

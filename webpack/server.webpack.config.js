@@ -22,7 +22,7 @@ export default {
       {
         enforce: 'pre',
         test: /\.js$/,
-        loaders: ['eslint'],
+        loader: 'eslint-loader',
         exclude: /node_modules/
       },
       {
