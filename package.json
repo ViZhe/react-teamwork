@@ -54,7 +54,7 @@
     "express-session": "^1.14.1",
     "mobx": "^2.6.0",
     "mobx-react": "^3.5.8",
-    "mobx-react-form": "^1.13.3",
+    "mobx-react-form": "^1.13.26",
     "mongoose": "^4.6.5",
     "normalizr": "^2.2.1",
     "passport": "^0.3.2",
