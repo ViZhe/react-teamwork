@@ -17,12 +17,14 @@ import passport from './middleware/passport'
 import routes from './routes'
 
 
-const configPath = fs.existsSync(`${process.cwd()}/source/server/config.gitsecret.js`)
-  ? './config.gitsecret'
-  : './config.example'
-
-// eslint-disable-next-line import/no-dynamic-require
-const config = require(configPath).default
+let config
+if (fs.existsSync(`${process.cwd()}/source/server/config.gitsecret.js`)) {
+  // eslint-disable-next-line global-require
+  config = require('./config.gitsecret').default
+} else {
+  // eslint-disable-next-line global-require
+  config = require('./config.example').default
+}
 
 mongoose.Promise = global.Promise
 mongoose.connect(config.databases.mongo)
