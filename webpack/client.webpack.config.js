@@ -47,6 +47,9 @@ const config = {
       }
     })
   ],
+  performance: {
+    hints: false
+  },
   stats: {
     version: false,
     hash: false,
