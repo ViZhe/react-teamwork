@@ -6,8 +6,8 @@ import CardAdd from '../CardAdd'
 
 
 const CardList = ({cards, columnId}) => {
-  const cardWrap = cards.map((card, index) => (
-    <Card key={index} card={card} />
+  const cardWrap = cards.map(card => (
+    <Card key={card.id} card={card} />
   ))
 
   return (

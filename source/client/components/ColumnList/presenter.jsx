@@ -6,8 +6,8 @@ import ColumnAdd from '../ColumnAdd'
 
 
 const ColumnList = ({columns, boardId}) => {
-  const columnWrap = columns.map((column, index) => (
-    <Column key={index} column={column} />
+  const columnWrap = columns.map(column => (
+    <Column key={column.id} column={column} />
   ))
 
   return (

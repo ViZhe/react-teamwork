@@ -6,8 +6,8 @@ import BoardAdd from '../BoardAdd'
 
 
 const BoardList = ({boards}) => {
-  const boardWrap = boards.map((board, index) => (
-    <Board key={index} board={board} />
+  const boardWrap = boards.map(board => (
+    <Board key={board.id} board={board} />
   ))
 
   return (
